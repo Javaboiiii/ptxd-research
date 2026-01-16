@@ -1,28 +1,21 @@
 #include <cstdio>
 
-// __device__ __noinline__ int sqr(int n){
-//     if(n <= 0) return 0; 
+__device__ __noinline__ int sqr(int n){
+    if(n <= 0) return 0; 
 
-//     return (n - 1) * (n - 2); 
-// }
+    return (n - 1) * (n - 2); 
+}
+
+
 __global__ void vec_ops(const float *a, const float *b, float *c, int n){
     int i = blockIdx.x*blockDim.x + threadIdx.x;
     // if(i < n) c[i] = a[i]*2.0f + b[i]*3.0f;
 
     
-    for(int k = 0; k < a[i]; k ++){
-        c[i] = 0.07f * a[i] * b[i]; 
-        c[i] = 0.10f * a[i] * b[i]; 
-
-        c[i] = 0.04f * a[i] * b[i]; 
-        c[i] = 0.01f * a[i] * b[i]; 
-    }
-
-
-    // int j = b[i] + sqr(a[i]);
-    // int k = a[i] * sqr(b[i]);
-    // int h = sqr(c[i]) + k + j; 
-    // c[i] = (float)h; 
+    int j = b[i] + sqr(a[i]);
+    int k = a[i] * sqr(b[i]);
+    int h = sqr(c[i]) + k + j; 
+    c[i] = (float)h; 
 }
 
 int main(){
