@@ -10,8 +10,21 @@
 .target sm_75
 .address_size 64
 
-	// .globl	_Z7vec_opsPKfS0_Pfi
 
+.func  (.param .b32 func_retval0) _Z3sqri(
+	.param .b32 _Z3sqri_param_0
+)
+{
+	.reg .b32 	%r<3>;
+
+
+	ld.param.u32 	%r1, [_Z3sqri_param_0];
+	mul.lo.s32 	%r2, %r1, %r1;
+	st.param.b32 	[func_retval0+0], %r2;
+	ret;
+
+}
+	// .globl	_Z7vec_opsPKfS0_Pfi
 .visible .entry _Z7vec_opsPKfS0_Pfi(
 	.param .u64 _Z7vec_opsPKfS0_Pfi_param_0,
 	.param .u64 _Z7vec_opsPKfS0_Pfi_param_1,
@@ -21,7 +34,7 @@
 {
 	.reg .pred 	%p<2>;
 	.reg .f32 	%f<15>;
-	.reg .b32 	%r<15>;
+	.reg .b32 	%r<16>;
 	.reg .b64 	%rd<11>;
 
 
@@ -41,37 +54,71 @@
 	add.s64 	%rd2, %rd9, %rd8;
 	cvta.to.global.u64 	%rd10, %rd5;
 	add.s64 	%rd3, %rd10, %rd8;
-	@%p1 bra 	$L__BB0_2;
-	bra.uni 	$L__BB0_1;
+	@%p1 bra 	$L__BB1_2;
+	bra.uni 	$L__BB1_1;
 
-$L__BB0_2:
+$L__BB1_2:
 	ld.global.f32 	%f4, [%rd2];
 	ld.global.f32 	%f5, [%rd3];
 	mul.f32 	%f6, %f5, 0f40400000;
 	fma.rn.f32 	%f14, %f4, 0f40000000, %f6;
 	st.global.f32 	[%rd1], %f14;
-	bra.uni 	$L__BB0_3;
+	bra.uni 	$L__BB1_3;
 
-$L__BB0_1:
+$L__BB1_1:
 	ld.global.f32 	%f14, [%rd1];
 
-$L__BB0_3:
+$L__BB1_3:
 	ld.global.f32 	%f7, [%rd2];
 	cvt.rzi.s32.f32 	%r6, %f7;
-	mul.lo.s32 	%r7, %r6, %r6;
+	{ // callseq 0, 0
+	.reg .b32 temp_param_reg;
+	.param .b32 param0;
+	st.param.b32 	[param0+0], %r6;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	_Z3sqri, 
+	(
+	param0
+	);
+	ld.param.b32 	%r7, [retval0+0];
+	} // callseq 0
 	cvt.rn.f32.s32 	%f8, %r7;
 	ld.global.f32 	%f9, [%rd3];
 	add.f32 	%f10, %f9, %f8;
 	cvt.rzi.s32.f32 	%r8, %f10;
 	cvt.rzi.s32.f32 	%r9, %f9;
-	mul.lo.s32 	%r10, %r9, %r9;
+	{ // callseq 1, 0
+	.reg .b32 temp_param_reg;
+	.param .b32 param0;
+	st.param.b32 	[param0+0], %r9;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	_Z3sqri, 
+	(
+	param0
+	);
+	ld.param.b32 	%r10, [retval0+0];
+	} // callseq 1
 	cvt.rn.f32.s32 	%f11, %r10;
 	mul.f32 	%f12, %f7, %f11;
 	cvt.rzi.s32.f32 	%r11, %f12;
 	cvt.rzi.s32.f32 	%r12, %f14;
-	add.s32 	%r13, %r11, %r8;
-	mad.lo.s32 	%r14, %r12, %r12, %r13;
-	cvt.rn.f32.s32 	%f13, %r14;
+	{ // callseq 2, 0
+	.reg .b32 temp_param_reg;
+	.param .b32 param0;
+	st.param.b32 	[param0+0], %r12;
+	.param .b32 retval0;
+	call.uni (retval0), 
+	_Z3sqri, 
+	(
+	param0
+	);
+	ld.param.b32 	%r13, [retval0+0];
+	} // callseq 2
+	add.s32 	%r14, %r11, %r8;
+	add.s32 	%r15, %r14, %r13;
+	cvt.rn.f32.s32 	%f13, %r15;
 	st.global.f32 	[%rd1], %f13;
 	ret;
 

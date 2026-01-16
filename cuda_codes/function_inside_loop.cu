@@ -1,6 +1,6 @@
 #include <cstdio>
 
-__device__ int sqr(int n){
+__device__ __noinline__ int sqr(int n){
     return n * n; 
 }
 
@@ -8,11 +8,13 @@ __device__ int sqr(int n){
 __global__ void vec_ops(const float *a, const float *b, float *c, int n){
     int i = blockIdx.x*blockDim.x + threadIdx.x;
     if(i < n) c[i] = a[i]*2.0f + b[i]*3.0f;
+    int h = 0; 
+    for(int o = 0; o <= 100; o ++){
+        int j = b[i] + sqr(a[i]);
+        int k = a[i] * sqr(b[i]);
+        h = sqr(c[i]) + k + j; 
+    }
 
-    
-    int j = b[i] + sqr(a[i]);
-    int k = a[i] * sqr(b[i]);
-    int h = sqr(c[i]) + k + j; 
     c[i] = (float)h; 
 }
 

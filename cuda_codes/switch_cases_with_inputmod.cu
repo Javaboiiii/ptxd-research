@@ -1,19 +1,20 @@
 #include <cstdio>
 
-__device__ int sqr(int n){
-    return n * n; 
-}
-
-
 __global__ void vec_ops(const float *a, const float *b, float *c, int n){
     int i = blockIdx.x*blockDim.x + threadIdx.x;
-    if(i < n) c[i] = a[i]*2.0f + b[i]*3.0f;
 
-    
-    int j = b[i] + sqr(a[i]);
-    int k = a[i] * sqr(b[i]);
-    int h = sqr(c[i]) + k + j; 
-    c[i] = (float)h; 
+    int case_no = 0; 
+
+    switch(case_no){
+        case 0: 
+            c[i] = a[i] * b[i] * 0.12f; 
+            break; 
+        case 1: 
+            c[i] = b[i] * 0.2f; 
+            break; 
+        default: 
+            c[i] = a[i] * b[i]; 
+    }
 }
 
 int main(){
@@ -30,8 +31,6 @@ int main(){
     cudaMemcpy(db, b, N*sizeof(float), cudaMemcpyHostToDevice);
 
     vec_ops<<<1, N>>>(da, db, dc, N);
-
-
 
     cudaMemcpy(c, dc, N*sizeof(float), cudaMemcpyDeviceToHost);
 

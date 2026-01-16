@@ -1,6 +1,6 @@
 #include <cstdio>
 
-__device__ int sqr(int n){
+__device__ __noinline__ int sqr(int n){
     return n * n; 
 }
 
