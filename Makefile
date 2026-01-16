@@ -7,8 +7,10 @@ BIN_DIR = bin
 PTX_DIR = ptx
 DECOMP_DIR = $(PTX_DIR)/decompiled
 
-CU_FILES := $(wildcard *.cu)
-TARGETS := $(CU_FILES:.cu=)
+vpath %.cu . cuda_codes
+
+CU_FILES := $(wildcard *.cu) $(wildcard cuda_codes/*.cu)
+TARGETS := $(basename $(notdir $(CU_FILES)))
 BIN_TARGETS := $(addprefix $(BIN_DIR)/,$(TARGETS))
 PTX_TARGETS := $(addprefix $(PTX_DIR)/,$(addsuffix .ptx,$(TARGETS)))
 
