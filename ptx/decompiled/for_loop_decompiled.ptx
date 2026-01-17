@@ -1,0 +1,171 @@
+
+Fatbin elf code:
+================
+arch = sm_89
+code version = [1,8]
+host = linux
+compile_size = 64bit
+
+Fatbin elf code:
+================
+arch = sm_89
+code version = [1,8]
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_89
+code version = [9,2]
+host = linux
+compile_size = 64bit
+compressed
+ptxasOptions = 
+
+
+
+
+
+
+
+
+.version 9.2
+.target sm_89
+.address_size 64
+
+
+
+.visible .entry _Z11loop_kernelPfi(
+.param .u64 _Z11loop_kernelPfi_param_0,
+.param .u32 _Z11loop_kernelPfi_param_1
+)
+{
+.reg .pred %p<2>;
+.reg .f32 %f<104>;
+.reg .b32 %r<6>;
+.reg .b64 %rd<5>;
+
+
+ld.param.u64 %rd1, [_Z11loop_kernelPfi_param_0];
+ld.param.u32 %r2, [_Z11loop_kernelPfi_param_1];
+mov.u32 %r3, %ctaid.x;
+mov.u32 %r4, %ntid.x;
+mov.u32 %r5, %tid.x;
+mad.lo.s32 %r1, %r3, %r4, %r5;
+setp.ge.s32 %p1, %r1, %r2;
+@%p1 bra $L__BB0_2;
+
+cvta.to.global.u64 %rd2, %rd1;
+cvt.rn.f32.s32 %f1, %r1;
+add.f32 %f2, %f1, 0f3F800000;
+mul.f32 %f3, %f2, 0f3A83126F;
+fma.rn.f32 %f4, %f3, 0f00000000, 0f00000000;
+add.f32 %f5, %f4, %f3;
+fma.rn.f32 %f6, %f3, 0f40000000, %f5;
+fma.rn.f32 %f7, %f3, 0f40400000, %f6;
+fma.rn.f32 %f8, %f3, 0f40800000, %f7;
+fma.rn.f32 %f9, %f3, 0f40A00000, %f8;
+fma.rn.f32 %f10, %f3, 0f40C00000, %f9;
+fma.rn.f32 %f11, %f3, 0f40E00000, %f10;
+fma.rn.f32 %f12, %f3, 0f41000000, %f11;
+fma.rn.f32 %f13, %f3, 0f41100000, %f12;
+fma.rn.f32 %f14, %f3, 0f41200000, %f13;
+fma.rn.f32 %f15, %f3, 0f41300000, %f14;
+fma.rn.f32 %f16, %f3, 0f41400000, %f15;
+fma.rn.f32 %f17, %f3, 0f41500000, %f16;
+fma.rn.f32 %f18, %f3, 0f41600000, %f17;
+fma.rn.f32 %f19, %f3, 0f41700000, %f18;
+fma.rn.f32 %f20, %f3, 0f41800000, %f19;
+fma.rn.f32 %f21, %f3, 0f41880000, %f20;
+fma.rn.f32 %f22, %f3, 0f41900000, %f21;
+fma.rn.f32 %f23, %f3, 0f41980000, %f22;
+fma.rn.f32 %f24, %f3, 0f41A00000, %f23;
+fma.rn.f32 %f25, %f3, 0f41A80000, %f24;
+fma.rn.f32 %f26, %f3, 0f41B00000, %f25;
+fma.rn.f32 %f27, %f3, 0f41B80000, %f26;
+fma.rn.f32 %f28, %f3, 0f41C00000, %f27;
+fma.rn.f32 %f29, %f3, 0f41C80000, %f28;
+fma.rn.f32 %f30, %f3, 0f41D00000, %f29;
+fma.rn.f32 %f31, %f3, 0f41D80000, %f30;
+fma.rn.f32 %f32, %f3, 0f41E00000, %f31;
+fma.rn.f32 %f33, %f3, 0f41E80000, %f32;
+fma.rn.f32 %f34, %f3, 0f41F00000, %f33;
+fma.rn.f32 %f35, %f3, 0f41F80000, %f34;
+fma.rn.f32 %f36, %f3, 0f42000000, %f35;
+fma.rn.f32 %f37, %f3, 0f42040000, %f36;
+fma.rn.f32 %f38, %f3, 0f42080000, %f37;
+fma.rn.f32 %f39, %f3, 0f420C0000, %f38;
+fma.rn.f32 %f40, %f3, 0f42100000, %f39;
+fma.rn.f32 %f41, %f3, 0f42140000, %f40;
+fma.rn.f32 %f42, %f3, 0f42180000, %f41;
+fma.rn.f32 %f43, %f3, 0f421C0000, %f42;
+fma.rn.f32 %f44, %f3, 0f42200000, %f43;
+fma.rn.f32 %f45, %f3, 0f42240000, %f44;
+fma.rn.f32 %f46, %f3, 0f42280000, %f45;
+fma.rn.f32 %f47, %f3, 0f422C0000, %f46;
+fma.rn.f32 %f48, %f3, 0f42300000, %f47;
+fma.rn.f32 %f49, %f3, 0f42340000, %f48;
+fma.rn.f32 %f50, %f3, 0f42380000, %f49;
+fma.rn.f32 %f51, %f3, 0f423C0000, %f50;
+fma.rn.f32 %f52, %f3, 0f42400000, %f51;
+fma.rn.f32 %f53, %f3, 0f42440000, %f52;
+fma.rn.f32 %f54, %f3, 0f42480000, %f53;
+fma.rn.f32 %f55, %f3, 0f424C0000, %f54;
+fma.rn.f32 %f56, %f3, 0f42500000, %f55;
+fma.rn.f32 %f57, %f3, 0f42540000, %f56;
+fma.rn.f32 %f58, %f3, 0f42580000, %f57;
+fma.rn.f32 %f59, %f3, 0f425C0000, %f58;
+fma.rn.f32 %f60, %f3, 0f42600000, %f59;
+fma.rn.f32 %f61, %f3, 0f42640000, %f60;
+fma.rn.f32 %f62, %f3, 0f42680000, %f61;
+fma.rn.f32 %f63, %f3, 0f426C0000, %f62;
+fma.rn.f32 %f64, %f3, 0f42700000, %f63;
+fma.rn.f32 %f65, %f3, 0f42740000, %f64;
+fma.rn.f32 %f66, %f3, 0f42780000, %f65;
+fma.rn.f32 %f67, %f3, 0f427C0000, %f66;
+fma.rn.f32 %f68, %f3, 0f42800000, %f67;
+fma.rn.f32 %f69, %f3, 0f42820000, %f68;
+fma.rn.f32 %f70, %f3, 0f42840000, %f69;
+fma.rn.f32 %f71, %f3, 0f42860000, %f70;
+fma.rn.f32 %f72, %f3, 0f42880000, %f71;
+fma.rn.f32 %f73, %f3, 0f428A0000, %f72;
+fma.rn.f32 %f74, %f3, 0f428C0000, %f73;
+fma.rn.f32 %f75, %f3, 0f428E0000, %f74;
+fma.rn.f32 %f76, %f3, 0f42900000, %f75;
+fma.rn.f32 %f77, %f3, 0f42920000, %f76;
+fma.rn.f32 %f78, %f3, 0f42940000, %f77;
+fma.rn.f32 %f79, %f3, 0f42960000, %f78;
+fma.rn.f32 %f80, %f3, 0f42980000, %f79;
+fma.rn.f32 %f81, %f3, 0f429A0000, %f80;
+fma.rn.f32 %f82, %f3, 0f429C0000, %f81;
+fma.rn.f32 %f83, %f3, 0f429E0000, %f82;
+fma.rn.f32 %f84, %f3, 0f42A00000, %f83;
+fma.rn.f32 %f85, %f3, 0f42A20000, %f84;
+fma.rn.f32 %f86, %f3, 0f42A40000, %f85;
+fma.rn.f32 %f87, %f3, 0f42A60000, %f86;
+fma.rn.f32 %f88, %f3, 0f42A80000, %f87;
+fma.rn.f32 %f89, %f3, 0f42AA0000, %f88;
+fma.rn.f32 %f90, %f3, 0f42AC0000, %f89;
+fma.rn.f32 %f91, %f3, 0f42AE0000, %f90;
+fma.rn.f32 %f92, %f3, 0f42B00000, %f91;
+fma.rn.f32 %f93, %f3, 0f42B20000, %f92;
+fma.rn.f32 %f94, %f3, 0f42B40000, %f93;
+fma.rn.f32 %f95, %f3, 0f42B60000, %f94;
+fma.rn.f32 %f96, %f3, 0f42B80000, %f95;
+fma.rn.f32 %f97, %f3, 0f42BA0000, %f96;
+fma.rn.f32 %f98, %f3, 0f42BC0000, %f97;
+fma.rn.f32 %f99, %f3, 0f42BE0000, %f98;
+fma.rn.f32 %f100, %f3, 0f42C00000, %f99;
+fma.rn.f32 %f101, %f3, 0f42C20000, %f100;
+fma.rn.f32 %f102, %f3, 0f42C40000, %f101;
+fma.rn.f32 %f103, %f3, 0f42C60000, %f102;
+mul.wide.s32 %rd3, %r1, 4;
+add.s64 %rd4, %rd2, %rd3;
+st.global.f32 [%rd4], %f103;
+
+$L__BB0_2:
+ret;
+
+}
+
+
