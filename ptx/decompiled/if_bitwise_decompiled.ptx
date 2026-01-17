@@ -1,0 +1,105 @@
+
+Fatbin elf code:
+================
+arch = sm_89
+code version = [1,8]
+host = linux
+compile_size = 64bit
+
+Fatbin elf code:
+================
+arch = sm_89
+code version = [1,8]
+host = linux
+compile_size = 64bit
+
+Fatbin ptx code:
+================
+arch = sm_89
+code version = [9,2]
+host = linux
+compile_size = 64bit
+compressed
+ptxasOptions = 
+
+
+
+
+
+
+
+
+.version 9.2
+.target sm_89
+.address_size 64
+
+
+
+.visible .entry _Z13branch_kernelPfi(
+.param .u64 _Z13branch_kernelPfi_param_0,
+.param .u32 _Z13branch_kernelPfi_param_1
+)
+{
+.reg .pred %p<15>;
+.reg .b32 %r<12>;
+.reg .b64 %rd<5>;
+
+
+ld.param.u64 %rd2, [_Z13branch_kernelPfi_param_0];
+ld.param.u32 %r2, [_Z13branch_kernelPfi_param_1];
+cvta.to.global.u64 %rd3, %rd2;
+mov.u32 %r3, %ntid.x;
+mov.u32 %r4, %ctaid.x;
+mov.u32 %r5, %tid.x;
+mad.lo.s32 %r1, %r4, %r3, %r5;
+setp.ge.s32 %p1, %r1, %r2;
+setp.lt.s32 %p2, %r1, 1;
+mul.wide.s32 %rd4, %r1, 4;
+add.s64 %rd1, %rd3, %rd4;
+or.pred %p3, %p2, %p1;
+@%p3 bra $L__BB0_4;
+
+and.b32 %r6, %r1, 1;
+setp.eq.b32 %p4, %r6, 1;
+mov.pred %p5, 0;
+xor.pred %p6, %p4, %p5;
+not.pred %p7, %p6;
+@%p7 bra $L__BB0_3;
+bra.uni $L__BB0_2;
+
+$L__BB0_3:
+mov.u32 %r8, 1065353216;
+st.global.u32 [%rd1], %r8;
+bra.uni $L__BB0_4;
+
+$L__BB0_2:
+mov.u32 %r7, -1082130432;
+st.global.u32 [%rd1], %r7;
+
+$L__BB0_4:
+and.pred %p10, %p2, %p1;
+@%p10 bra $L__BB0_8;
+
+and.b32 %r9, %r1, 1;
+setp.eq.b32 %p11, %r9, 1;
+mov.pred %p12, 0;
+xor.pred %p13, %p11, %p12;
+not.pred %p14, %p13;
+@%p14 bra $L__BB0_7;
+bra.uni $L__BB0_6;
+
+$L__BB0_7:
+mov.u32 %r11, 1065353216;
+st.global.u32 [%rd1], %r11;
+bra.uni $L__BB0_8;
+
+$L__BB0_6:
+mov.u32 %r10, -1082130432;
+st.global.u32 [%rd1], %r10;
+
+$L__BB0_8:
+ret;
+
+}
+
+

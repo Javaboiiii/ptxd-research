@@ -1,4 +1,3 @@
-
 NVCC = nvcc
 CUOBJDUMP = cuobjdump
 ARCH ?= -arch=sm_89
