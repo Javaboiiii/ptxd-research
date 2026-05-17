@@ -5,13 +5,11 @@ __global__ void predicated_non_bra(int *a, int *b, int *c, int n) {
         int valB = b[i];
         int res;
         
-        // Using inline PTX to guarantee predicated execution on an instruction 
-        // without introducing any branch instructions (bra).
         asm("{\n\t"
-            ".reg .pred p;\n\t"
-            "setp.gt.s32 p, %1, %2;\n\t"
-            "mov.u32 %0, 0;\n\t"      // default value
-            "@p add.s32 %0, %1, %2;\n\t" // predicated add!
+            ".reg .pred %%p;\n\t"
+            "setp.gt.s32 %%p, %1, %2;\n\t"
+            "mov.u32 %0, 0;\n\t"     
+            "@%%p add.s32 %0, %1, %2;\n\t" 
             "}" : "=r"(res) : "r"(valA), "r"(valB));
             
         c[i] = res;

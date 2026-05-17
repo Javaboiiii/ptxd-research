@@ -44,10 +44,10 @@
 	ld.global.u32 	%r8, [%rd8];
 	// begin inline asm
 	{
-	.reg .pred p;
-	setp.gt.s32 p, %r7, %r8;
+	.reg .pred %p;
+	setp.gt.s32 %p, %r7, %r8;
 	mov.u32 %r6, 0;
-	@p add.s32 %r6, %r7, %r8;
+	@%p add.s32 %r6, %r7, %r8;
 	}
 	// end inline asm
 	cvta.to.global.u64 	%rd9, %rd3;
